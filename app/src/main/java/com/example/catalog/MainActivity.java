@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity
     items s1=new items("Paneers Masala",50);
     items s2=new items("Butter Chicken",150);
     items s3=new items("Chicken Biryani",550);
-    items s4=new items("Hyderabadi Chicken",530);
+   // items s4=new items("Hyderabadi Chicken",530);
    // String []arr={s1.name ,s2.name,s3.name,s4.name};
    public int p=0;
     public  int cost;
