@@ -1,5 +1,6 @@
 package com.example.catalog;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,18 +12,28 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class orders extends AppCompatActivity implements PaymentResultListener {
     private RecyclerView recycle2;
     TextView textview2;
     Button button2;
-    ArrayList<items> p=new ArrayList<items>();
+     public ArrayList<items> p=new ArrayList<items>();
+    public ArrayList<orderslist> p1=new ArrayList<orderslist>();
+    private FirebaseDatabase db=FirebaseDatabase.getInstance();
+    private DatabaseReference root=db.getReference().child("Orders");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +43,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
         textview2=findViewById(R.id.textView2);
         button2=findViewById(R.id.button2);
 
-        ArrayList<items> p = (ArrayList<items>) getIntent().getSerializableExtra("key");
+        p = (ArrayList<items>) getIntent().getSerializableExtra("key");
         recycle2.setLayoutManager(new LinearLayoutManager(this));
         CustomAdapter1 c=new CustomAdapter1(this,p);
         recycle2.setAdapter(c);
@@ -43,7 +54,9 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
             @Override
             public void onClick(View v) {
 
+
                 startPayment(cost);
+
             }
         });
     }
@@ -97,7 +110,99 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
     @Override
     public void onPaymentSuccess(String s)
     {
+
+//        HashMap<String,ArrayList<orderslist>>ordermap=new HashMap<>();
+//
+//        HashMap<String,Integer> v=new HashMap<>();
+//        for(int i=0;i<p.size();i++)
+//        {
+//            String str=p.get(i).name;
+//            if(v.containsKey(str))
+//            {
+//                Integer sno=v.get(str);
+//                v.put(str,sno+1);
+//            }
+//            else
+//            {
+//                v.put(str,1);
+//            }
+//        }
+//
+//        for (String name :v.keySet())
+//        {
+//            Integer sno=v.get(name);
+//            orderslist s1=new orderslist(name ,sno);
+//           p1.add(s1);
+//
+////           e.getKey()
+////                    e.getValue());
+//        }
+//
+//
+//
+//
+//         ordermap.put("UTSA",p1);
+////        for(int i=0;i<p.size();i++)
+////        {
+////            String st=p.get(i).name;
+////            int psize=p.get(i).price;
+////            ordermap.put("Items",st);
+////          //  root.setValue(st);
+////        }
+//        root.setValue(ordermap);
+          setvalues();
         Toast.makeText(this, "PAYMENT SUCESSS", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    private void setvalues()
+    {
+       // HashMap<String,ArrayList<orderslist>>ordermap=new HashMap<>();
+         HashMap<String,ArrayList<orderslist>>ordermap=new HashMap<>();
+        HashMap<String,ArrayList<items>>orderma=new HashMap<>();
+        HashMap<String,Integer> v=new HashMap<>();
+        for(int i=0;i<p.size();i++)
+        {
+            String str=p.get(i).name;
+            if(v.containsKey(str))
+            {
+                Integer sno=v.get(str);
+                v.put(str,sno+1);
+            }
+            else
+            {
+                v.put(str,1);
+            }
+        }
+
+        for (String name :v.keySet())
+        {
+            Integer sno=v.get(name);
+            orderslist s1=new orderslist(name ,sno);
+           p1.add(s1);
+
+
+        }
+
+         Model s1=new Model("UTT",p1);
+        //ordermap.put(s1);
+         orderma.put("UTSA",p);
+//        for(int i=0;i<p.size();i++)
+//        {
+//            String st=p.get(i).name;
+//            int psize=p.get(i).price;
+//            ordermap.put("Items",st);
+//          //  root.setValue(st);
+//        }
+        root.push().setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull  Task<Void> task) {
+                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        startActivity(new Intent(orders.this,Shoporders.class));
     }
 
     @Override
