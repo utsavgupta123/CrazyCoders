@@ -185,7 +185,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
         }
 
-         Model s1=new Model("UTT",p1);
+         Model s1=new Model("UTT",p1,"");
         //ordermap.put(s1);
          orderma.put("UTSA",p);
 //        for(int i=0;i<p.size();i++)
@@ -195,13 +195,23 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 //            ordermap.put("Items",st);
 //          //  root.setValue(st);
 //        }
-        root.push().setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
+        s1.idg=root.push().getKey();
+        root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull  Task<Void> task) {
                 Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
 
             }
         });
+
+
+//        s1.ids=root.push().setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull  Task<Void> task) {
+//                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
         startActivity(new Intent(orders.this,Shoporders.class));
     }
 

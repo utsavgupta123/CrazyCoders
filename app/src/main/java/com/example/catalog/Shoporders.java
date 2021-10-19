@@ -26,6 +26,7 @@ public class Shoporders extends AppCompatActivity
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private DatabaseReference root=db.getReference().child("Orders");
     ArrayList<Model> ord;
+
     //ArrayList<String>ord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
