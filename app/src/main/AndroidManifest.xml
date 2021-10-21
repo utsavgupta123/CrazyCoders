@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.catalog">
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Catalog">
-        <activity android:name=".Shoporders"></activity>
+        <activity android:name=".Menuitems"></activity>
+        <activity android:name=".Shoporders" />
         <activity android:name=".orders" />
         <activity android:name=".MainActivity">
             <intent-filter>

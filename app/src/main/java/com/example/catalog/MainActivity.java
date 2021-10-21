@@ -1,5 +1,6 @@
 package com.example.catalog;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,39 +33,42 @@ public class MainActivity extends AppCompatActivity
    // String []arr={s1.name ,s2.name,s3.name,s4.name};
    public int p=0;
     public  int cost;
-    ArrayList<items> ordered=new ArrayList<items>();
 
+    ArrayList<items> ordered=new ArrayList<items>();
+    private FirebaseDatabase db=FirebaseDatabase.getInstance();
+    private DatabaseReference root1=db.getReference().child("Menu");
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-     //   startActivity(new Intent(MainActivity.this,Shoporders.class));
+      // startActivity(new Intent(MainActivity.this,Shoporders.class));
         recycleview1=findViewById(R.id.recyclerView);
         textview5=findViewById(R.id.textView5);
         recycleview1.setLayoutManager(new LinearLayoutManager(this));
         viewcart=findViewById(R.id.viewcart);
-//        items [] arr;
-//        arr=new items[3];
-//        arr[0]=s1;
-//        arr[1]=s2;
-//        arr[2]=s3;
-          ArrayList<items>arr=new ArrayList<>(9);
+
+
+
+
+
+
+
+        ArrayList<items>arr=new ArrayList<>();
+
           arr.add(s1);
           arr.add(s2);
           arr.add(s3);
-           arr.add(s1);
-          arr.add(s2);
-         arr.add(s3);
-        arr.add(s1);
-        arr.add(s2);
-        arr.add(s3);
+//           arr.add(s1);
+//          arr.add(s2);
+//         arr.add(s3);
+//        arr.add(s1);
+//        arr.add(s2);
+//        arr.add(s3);
 
         CustomAdapter c=new CustomAdapter(this,arr,textview5,ordered);
         recycleview1.setAdapter(c);
-//        String str = getIntent().getStringExtra("key");
+
          textview5.setText(Integer.toString(cost));
-//        Bundle args = new Bundle();
-//        args.putSerializable("ARRAYLIST",(Serializable)ordered);
-//        getIntent().putExtra("key",args);
+
 
         viewcart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +78,25 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra("key", ordered);
                 intent.putExtra("key2",str);
                 startActivity(intent);
+
+            }
+        });
+
+
+        root1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot)
+            {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren())
+                {
+                    items t3=dataSnapshot.getValue(items.class);
+                    arr.add(t3);
+                }
+                c.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
 
             }
         });

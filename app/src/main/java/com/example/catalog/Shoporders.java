@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -26,7 +29,7 @@ public class Shoporders extends AppCompatActivity
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private DatabaseReference root=db.getReference().child("Orders");
     ArrayList<Model> ord;
-
+        Button button4;
     //ArrayList<String>ord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class Shoporders extends AppCompatActivity
         Toast.makeText(this, "WELCOME", Toast.LENGTH_SHORT).show();
          setContentView(R.layout.activity_shoporders);
         recycleview2=findViewById(R.id.recycleview2);
+        button4=findViewById(R.id.button4);
         ord=new ArrayList<>();
 
         recycleview2.setLayoutManager(new LinearLayoutManager(this));
@@ -60,6 +64,20 @@ public class Shoporders extends AppCompatActivity
 
             }
         });
+
+        button4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(Shoporders.this,Menuitems.class));
+            }
+        });
+
+
+
+
+
 
 
     }

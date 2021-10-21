@@ -92,12 +92,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return vh;
     }
 
-//    @NonNull
-//    @org.jetbrains.annotations.NotNull
-//    @Override
-//    public ViewHolder onCreateViewHolder(@NonNull @org.jetbrains.annotations.NotNull ViewGroup parent, int viewType) {
-//        return null;
-//    }
+
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override

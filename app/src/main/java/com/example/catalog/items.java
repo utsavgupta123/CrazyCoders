@@ -11,6 +11,10 @@ public  class items implements Serializable
     public String name;
     public int price;
    // public String dishimg;
+    items()
+    {
+        
+    }
     items(String dish,int val)
 
     {
