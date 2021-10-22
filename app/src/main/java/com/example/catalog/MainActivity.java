@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     items s4=new items("Hyderabadi Chicken",530);
     items s7=new items("Hyderabadi Chicken",530);
    // String []arr={s1.name ,s2.name,s3.name,s4.name};
-   public int p=0;
+
     public  int cost;
 
     ArrayList<items> ordered=new ArrayList<items>();
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
       // startActivity(new Intent(MainActivity.this,Shoporders.class));
+        //startActivity(new Intent(MainActivity.this,Menuitems.class));
         recycleview1=findViewById(R.id.recyclerView);
         textview5=findViewById(R.id.textView5);
         recycleview1.setLayoutManager(new LinearLayoutManager(this));

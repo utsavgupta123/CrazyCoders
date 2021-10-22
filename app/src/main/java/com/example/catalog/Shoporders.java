@@ -37,6 +37,9 @@ public class Shoporders extends AppCompatActivity
         Toast.makeText(this, "WELCOME", Toast.LENGTH_SHORT).show();
          setContentView(R.layout.activity_shoporders);
         recycleview2=findViewById(R.id.recycleview2);
+       // recycleview2.hasFixedSize();
+       // recycleview2.setItemViewCacheSize(0);
+        recycleview2.setHasFixedSize(true);
         button4=findViewById(R.id.button4);
         ord=new ArrayList<>();
 
