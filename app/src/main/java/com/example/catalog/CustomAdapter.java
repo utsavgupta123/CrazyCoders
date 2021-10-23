@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
@@ -38,7 +40,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             super(view);
             textView = (TextView) view.findViewById(R.id.textView);
             button=(Button)view.findViewById(R.id.button);
-            imageview=(ImageView)view.findViewById(R.id.imageview);
+            imageview=(ImageView)view.findViewById(R.id.imageView2);
             // Define click listener for the ViewHolder's View
 
                     button.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +107,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         viewHolder.getTextView().setText(localDataSet.get(position).name);
         viewHolder.button.setText(Integer.toString(localDataSet.get(position).price));
+        Glide.with(context).load(localDataSet.get(position).imageurl).into(viewHolder.imageview);
        // viewHolder.imageview.getDrawable(R.drawable.ic_launcher_background);
     }
 

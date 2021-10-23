@@ -10,16 +10,18 @@ public  class items implements Serializable
 
     public String name;
     public int price;
-   // public String dishimg;
+
+    public String imageurl;
     items()
     {
         
     }
-    items(String dish,int val)
+    items(String dish,int val,String imageurlurl)
 
     {
         this.name=dish;
         this.price=val;
+        this.imageurl=imageurlurl;
         //this.dishimg=image;
     }
 

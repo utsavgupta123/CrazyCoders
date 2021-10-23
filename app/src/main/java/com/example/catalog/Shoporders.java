@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Shoporders extends AppCompatActivity
 {
@@ -29,7 +30,10 @@ public class Shoporders extends AppCompatActivity
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private DatabaseReference root=db.getReference().child("Orders");
     ArrayList<Model> ord;
+    HashSet<String>keymap;
         Button button4;
+
+
     //ArrayList<String>ord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,10 @@ public class Shoporders extends AppCompatActivity
         recycleview2.setHasFixedSize(true);
         button4=findViewById(R.id.button4);
         ord=new ArrayList<>();
-
+        keymap=new HashSet<>();
         recycleview2.setLayoutManager(new LinearLayoutManager(this));
 
-        CustomAdapter2 c=new CustomAdapter2(this,ord);
+        CustomAdapter2 c=new CustomAdapter2(this,ord,keymap);
 
         recycleview2.setAdapter(c);
 
@@ -67,6 +71,8 @@ public class Shoporders extends AppCompatActivity
 
             }
         });
+
+
 
         button4.setOnClickListener(new View.OnClickListener()
         {
