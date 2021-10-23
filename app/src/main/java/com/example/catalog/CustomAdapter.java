@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -107,6 +108,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         viewHolder.getTextView().setText(localDataSet.get(position).name);
         viewHolder.button.setText(Integer.toString(localDataSet.get(position).price));
+      //  Glide.with(context).load(localDataSet.get(position).imageurl).placeholder(android.R.drawable.progress_indeterminate_horizontal).error(android.R.drawable.stat_notify_error).into(viewHolder.imageview);
         Glide.with(context).load(localDataSet.get(position).imageurl).into(viewHolder.imageview);
        // viewHolder.imageview.getDrawable(R.drawable.ic_launcher_background);
     }

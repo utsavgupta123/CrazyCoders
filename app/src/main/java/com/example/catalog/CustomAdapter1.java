@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class CustomAdapter1 extends RecyclerView.Adapter<CustomAdapter1.ViewHolder> {
@@ -34,7 +36,7 @@ public class CustomAdapter1 extends RecyclerView.Adapter<CustomAdapter1.ViewHold
             super(view);
             textView = (TextView) view.findViewById(R.id.textView);
             button=(Button)view.findViewById(R.id.button);
-            imageview=(ImageView)view.findViewById(R.id.imageview);
+            imageview=(ImageView)view.findViewById(R.id.imageView2);
             // Define click listener for the ViewHolder's View
 
 
@@ -88,6 +90,7 @@ public class CustomAdapter1 extends RecyclerView.Adapter<CustomAdapter1.ViewHold
 
         viewHolder.getTextView().setText(localDataSet.get(position).name);
         viewHolder.button.setText(Integer.toString(localDataSet.get(position).price));
+        Glide.with(context).load(localDataSet.get(position).imageurl).into(viewHolder.imageview);
         // viewHolder.imageview.getDrawable(R.drawable.ic_launcher_background);
     }
 

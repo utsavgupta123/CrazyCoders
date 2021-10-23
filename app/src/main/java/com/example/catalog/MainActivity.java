@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
       // startActivity(new Intent(MainActivity.this,Shoporders.class));
-       // startActivity(new Intent(MainActivity.this,Menuitems.class));
+      //  startActivity(new Intent(MainActivity.this,Menuitems.class));
         recycleview1=findViewById(R.id.recyclerView);
         textview5=findViewById(R.id.textView5);
         recycleview1.setLayoutManager(new LinearLayoutManager(this));
