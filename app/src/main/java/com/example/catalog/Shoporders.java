@@ -31,7 +31,7 @@ public class Shoporders extends AppCompatActivity
     private DatabaseReference root=db.getReference().child("Orders");
     ArrayList<Model> ord;
     HashSet<String>keymap;
-        Button button4;
+    Button button4,updatebtn;
 
 
     //ArrayList<String>ord;
@@ -41,10 +41,12 @@ public class Shoporders extends AppCompatActivity
         Toast.makeText(this, "WELCOME", Toast.LENGTH_SHORT).show();
          setContentView(R.layout.activity_shoporders);
         recycleview2=findViewById(R.id.recycleview2);
+
        // recycleview2.hasFixedSize();
        // recycleview2.setItemViewCacheSize(0);
         recycleview2.setHasFixedSize(true);
         button4=findViewById(R.id.button4);
+        updatebtn=findViewById(R.id.button6);
         ord=new ArrayList<>();
         keymap=new HashSet<>();
         recycleview2.setLayoutManager(new LinearLayoutManager(this));
@@ -84,7 +86,14 @@ public class Shoporders extends AppCompatActivity
         });
 
 
+      updatebtn.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v)
+          {
+              startActivity(new Intent(Shoporders.this,UpdateCatalog.class));
 
+          }
+      });
 
 
 

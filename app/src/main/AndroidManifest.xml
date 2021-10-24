@@ -3,8 +3,7 @@
     package="com.example.catalog">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Catalog">
-        <activity android:name=".Menuitems"></activity>
+        <activity android:name=".NowUpdate"></activity>
+        <activity android:name=".UpdateCatalog" />
+        <activity android:name=".Menuitems" />
         <activity android:name=".Shoporders" />
         <activity android:name=".orders" />
         <activity android:name=".MainActivity">

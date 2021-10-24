@@ -140,8 +140,12 @@ public class Menuitems extends AppCompatActivity {
                                 {
                                    kp=uri.toString();
                                    newuri=uri;
+
+
                                     items d=new items(item1,cost,kp);
-                                    root.push().setValue(d).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    String ky=root.push().getKey();
+                                    d.key=ky;
+                                    root.child(ky).setValue(d).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(Menuitems.this, "CATALOG UPDATED", Toast.LENGTH_SHORT).show();
