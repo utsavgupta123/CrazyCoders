@@ -12,7 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Catalog">
-        <activity android:name=".NowUpdate"></activity>
+        <activity android:name=".TrackOrder"></activity>
+        <activity android:name=".CustomerDashboard" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".NowUpdate" />
         <activity android:name=".UpdateCatalog" />
         <activity android:name=".Menuitems" />
         <activity android:name=".Shoporders" />

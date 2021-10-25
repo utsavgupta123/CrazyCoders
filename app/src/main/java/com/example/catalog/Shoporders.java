@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,8 +32,8 @@ public class Shoporders extends AppCompatActivity
     private DatabaseReference root=db.getReference().child("Orders");
     ArrayList<Model> ord;
     HashSet<String>keymap;
-    Button button4,updatebtn;
-
+    Button button4,updatebtn,button10;
+    FirebaseAuth mAuth;
 
     //ArrayList<String>ord;
     @Override
@@ -41,11 +42,12 @@ public class Shoporders extends AppCompatActivity
         Toast.makeText(this, "WELCOME", Toast.LENGTH_SHORT).show();
          setContentView(R.layout.activity_shoporders);
         recycleview2=findViewById(R.id.recycleview2);
-
+        mAuth=FirebaseAuth.getInstance();
        // recycleview2.hasFixedSize();
        // recycleview2.setItemViewCacheSize(0);
         recycleview2.setHasFixedSize(true);
         button4=findViewById(R.id.button4);
+        button10=findViewById(R.id.button10);
         updatebtn=findViewById(R.id.button6);
         ord=new ArrayList<>();
         keymap=new HashSet<>();
@@ -59,6 +61,7 @@ public class Shoporders extends AppCompatActivity
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+              //  ord.clear();
                 for(DataSnapshot dataSnapshot:snapshot.getChildren())
                 {
 //
@@ -95,7 +98,13 @@ public class Shoporders extends AppCompatActivity
           }
       });
 
-
+     button10.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             mAuth.signOut();
+             startActivity(new Intent(Shoporders.this, LoginActivity.class));
+         }
+     });
 
 
     }

@@ -21,6 +21,7 @@ import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,8 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
     private RecyclerView recycle2;
     TextView textview2;
     Button button2;
-     public ArrayList<items> p=new ArrayList<items>();
+    Model s1;
+    public ArrayList<items> p=new ArrayList<items>();
     public ArrayList<orderslist> p1=new ArrayList<orderslist>();
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private DatabaseReference root=db.getReference().child("Orders");
@@ -56,6 +58,12 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
 
                 startPayment(cost);
+//                Intent intent=new Intent(orders.this,TrackOrder.class);
+//                ArrayList<Model> vt=new ArrayList<>();
+//                vt.add(s1);
+//                Toast.makeText(orders.this, vt.get(0).customer, Toast.LENGTH_SHORT).show();
+//                intent.putExtra("key6",vt);
+              //  startActivity(intent);
 
             }
         });
@@ -114,7 +122,16 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
         setvalues();
         Toast.makeText(this, "PAYMENT SUCESSS", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(orders.this,TrackOrder.class);
 
+        Bundle args = new Bundle();
+        args.putSerializable("ARRAYLIST",(Serializable)p1);
+        intent.putExtra("BUNDLE",args);
+        Toast.makeText(this, s1.idg, Toast.LENGTH_SHORT).show();
+        intent.putExtra("keykey",s1.idg);
+              //  intent.putExtra("key6",p1);
+         startActivity(intent);
+        //startActivity(new Intent(orders.this,TrackOrder.class));
 
     }
 
@@ -145,7 +162,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
         }
 
-         Model s1=new Model("UAVTY",p1,"");
+       s1=new Model("UDAVITY",p1,"");
 
 
         s1.idg=root.push().getKey();
@@ -154,12 +171,13 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
             public void onComplete(@NonNull  Task<Void> task) {
                 Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
 
+
             }
         });
 
 
 
-        startActivity(new Intent(orders.this,Shoporders.class));
+
     }
 
     @Override

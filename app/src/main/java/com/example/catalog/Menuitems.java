@@ -126,7 +126,7 @@ public class Menuitems extends AppCompatActivity {
 
         if (imageuri != null){
 
-
+            
             final StorageReference fileRef  = FirebaseStorage.getInstance().getReference(System.currentTimeMillis()+getFileExtension(imageuri) );
 
             fileRef.putFile(imageuri)
@@ -149,7 +149,7 @@ public class Menuitems extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(Menuitems.this, "CATALOG UPDATED", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(Menuitems.this, MainActivity.class));
+                                            startActivity(new Intent(Menuitems.this, Shoporders.class));
 
                                         }
                                     });
