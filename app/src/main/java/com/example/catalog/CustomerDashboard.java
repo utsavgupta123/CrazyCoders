@@ -10,15 +10,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerDashboard extends AppCompatActivity {
 
@@ -39,7 +45,7 @@ public class CustomerDashboard extends AppCompatActivity {
         logout=findViewById(R.id.logout);
 
         mAuth=FirebaseAuth.getInstance();
-
+        storeToken();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,4 +99,34 @@ public class CustomerDashboard extends AppCompatActivity {
 
 
     }
+
+
+    public void storeToken()
+    {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            //Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        String usermail=mAuth.getCurrentUser().getEmail();
+                        Map<String,Object> customertoken=new HashMap<>();
+                        customertoken.put("email",usermail);
+                        customertoken.put("token",token);
+                        String currkey=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        FirebaseDatabase.getInstance().getReference().child("Tokens").child(currkey).setValue(customertoken);
+                        Toast.makeText(CustomerDashboard.this, token, Toast.LENGTH_SHORT).show();
+                        // Log and toast
+                       // String msg = getString(R.string.msg_token_fmt, token);
+                       // Log.d(TAG, msg);
+
+                    }
+                });
+    }
+
 }

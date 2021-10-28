@@ -36,7 +36,7 @@ import com.google.firebase.storage.UploadTask;
 
 public class Menuitems extends AppCompatActivity {
 
-    EditText mprice,mdishname;
+    EditText mprice,mdishname,youtube;
     Button button5,button7;
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private DatabaseReference root=db.getReference().child("Menu");
@@ -57,7 +57,7 @@ public class Menuitems extends AppCompatActivity {
         button5=findViewById(R.id.button5);
         button7=findViewById(R.id.button7);
         imageview=findViewById(R.id.imageView);
-
+        youtube=findViewById(R.id.youtube);
          mGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
              @Override
              public void onActivityResult(Uri result) {
@@ -145,6 +145,7 @@ public class Menuitems extends AppCompatActivity {
                                     items d=new items(item1,cost,kp);
                                     String ky=root.push().getKey();
                                     d.key=ky;
+                                    d.recipieurl=youtube.getText().toString();
                                     root.child(ky).setValue(d).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

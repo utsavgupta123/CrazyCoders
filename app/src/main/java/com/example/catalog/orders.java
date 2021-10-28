@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
@@ -31,6 +32,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
     TextView textview2;
     Button button2;
     Model s1;
+    public String usertoken="";
     public ArrayList<items> p=new ArrayList<items>();
     public ArrayList<orderslist> p1=new ArrayList<orderslist>();
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
@@ -129,6 +131,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
         intent.putExtra("BUNDLE",args);
         Toast.makeText(this, s1.idg, Toast.LENGTH_SHORT).show();
         intent.putExtra("keykey",s1.idg);
+
               //  intent.putExtra("key6",p1);
          startActivity(intent);
         //startActivity(new Intent(orders.this,TrackOrder.class));
@@ -161,19 +164,22 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
 
         }
-
-       s1=new Model("UDAVITY",p1,"");
-
-
-        s1.idg=root.push().getKey();
-        root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull  Task<Void> task) {
-                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+        s1=new Model("UDAVITY",p1,"");
 
 
-            }
-        });
+        getToken();
+        Toast.makeText(this,"gettoken-"+s1.token, Toast.LENGTH_SHORT).show();
+     //  s1.token=usertoken;
+
+//        s1.idg=root.push().getKey();
+//        root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull  Task<Void> task) {
+//                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+//
+//
+//            }
+//        });
 
 
 
@@ -185,4 +191,42 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
         Toast.makeText(this, "PAYMENT FAILED", Toast.LENGTH_SHORT).show();
 
     }
+
+
+    public void getToken()
+    {
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            //Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return ;
+                        }
+
+                        // Get new FCM registration token
+                        String token1 = task.getResult();
+                        s1.token=token1;
+                        s1.idg=root.push().getKey();
+                        root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull  Task<Void> task) {
+                                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        });
+
+                        Toast.makeText(orders.this, "s1.token"+s1.token, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+    }
+
+
+
+
 }
