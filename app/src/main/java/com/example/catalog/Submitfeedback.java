@@ -38,42 +38,51 @@ public class Submitfeedback extends AppCompatActivity {
         Bundle args = intent.getBundleExtra("BUNDLE");
         ArrayList<orderslist> object = (ArrayList<orderslist>) args.getSerializable("ARRAYLIST");
         Map<String, Float> myMap = new HashMap<String, Float>();
+        Map<String,String>myMap2=new HashMap<String,String>();
 //
 //
         recyclefeedback.setLayoutManager(new LinearLayoutManager(this));
-        CustomAdapter6 c=new CustomAdapter6(this,object,myMap);
+        CustomAdapter6 c=new CustomAdapter6(this,object,myMap,myMap2);
 
         recyclefeedback.setAdapter(c);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Submitfeedback.this, Float.toString(myMap.get("Paneer Tikka")), Toast.LENGTH_SHORT).show();
 
-                root1.addValueEventListener(new ValueEventListener() {
+
+                root1.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull  DataSnapshot snapshot)
-                    {
+                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
+
+
+
                         for(DataSnapshot dataSnapshot:snapshot.getChildren())
                         {
                             items t3=dataSnapshot.getValue(items.class);
+
                             if(myMap.containsKey(t3.name))
                             {
+
                                 items kp=new items();
                                 kp=t3;
-                                kp.rating=myMap.get(t3.name);
+                                Float f=t3.rating;
+                                kp.rating=+myMap.get(t3.name)+f;
+                                kp.count=t3.count+1;
+                                Toast.makeText(Submitfeedback.this, myMap2.get(t3.name), Toast.LENGTH_SHORT).show();
+                                kp.reviews.add(myMap2.get(t3.name));
                                 root1.child(t3.key).setValue(kp);
                             }
                         }
                     }
+
+
 
                     @Override
                     public void onCancelled(@NonNull  DatabaseError error) {
 
                     }
                 });
-
-
 
 
 

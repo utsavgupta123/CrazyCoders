@@ -1,6 +1,7 @@
 package com.example.catalog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,15 +30,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
-        private final Button button,ratingbtn;
+        private final Button button,ratingbtn,reviewbtn;
         private final ImageView imageview;
+        private final Context context3;
 
         public ViewHolder(View view) {
 
             super(view);
+            context3= view.getContext();
             textView = (TextView) view.findViewById(R.id.textView);
             button=(Button)view.findViewById(R.id.button);
             ratingbtn=(Button)view.findViewById(R.id.ratingbtn);
+            reviewbtn=(Button)view.findViewById(R.id.button13);
             imageview=(ImageView)view.findViewById(R.id.imageView2);
             // Define click listener for the ViewHolder's View
 
@@ -55,6 +59,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         }
                     });
 
+                    reviewbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(context3,Showreviews.class);
+
+                            ArrayList<String> v3=localDataSet.get(getAdapterPosition()).reviews;
+                            //  ArrayList<String>v3=new ArrayList<>();
+                            Toast.makeText(context3, "op", Toast.LENGTH_SHORT).show();
+                            intent.putStringArrayListExtra("key6",v3);
+                            context3.startActivity(intent);
+
+                        }
+                    });
 
 
 
@@ -105,7 +122,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         viewHolder.getTextView().setText(localDataSet.get(position).name);
         viewHolder.button.setText(Integer.toString(localDataSet.get(position).price));
-        viewHolder.ratingbtn.setText("RATING-"+Float.toString(localDataSet.get(position).rating));
+        viewHolder.ratingbtn.setText("RATING-"+Float.toString(localDataSet.get(position).rating/localDataSet.get(position).count));
       //  Glide.with(context).load(localDataSet.get(position).imageurl).placeholder(android.R.drawable.progress_indeterminate_horizontal).error(android.R.drawable.stat_notify_error).into(viewHolder.imageview);
         Glide.with(context).load(localDataSet.get(position).imageurl).into(viewHolder.imageview);
        // viewHolder.imageview.getDrawable(R.drawable.ic_launcher_background);

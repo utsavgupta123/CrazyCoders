@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Catalog">
-        <activity android:name=".Submitfeedback"></activity>
+        <activity android:name=".Showreviews"></activity>
+        <activity android:name=".Submitfeedback" />
         <activity android:name=".TrackOrder" />
         <activity android:name=".CustomerDashboard" />
         <activity android:name=".SignupActivity" />
