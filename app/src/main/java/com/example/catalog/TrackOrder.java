@@ -18,12 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TrackOrder extends AppCompatActivity {
     private RecyclerView recycle3;
     TextView textView9;
-    Button checkstatus;
+    Button checkstatus,submitfeedback;
     String keyult="";
     ArrayList<Model>pk=new ArrayList<>();
 
@@ -39,7 +40,7 @@ public class TrackOrder extends AppCompatActivity {
         recycle3=findViewById(R.id.recyclerView3);
         textView9=findViewById(R.id.textView9);
         checkstatus=findViewById(R.id.button11);
-
+        submitfeedback=findViewById(R.id.feedbackbtn);
 //        pk = (ArrayList<Model>) getIntent().getSerializableExtra("key6");
 //        Toast.makeText(this, pk.get(0).customer, Toast.LENGTH_SHORT).show();
         Intent intent = getIntent();
@@ -51,7 +52,7 @@ public class TrackOrder extends AppCompatActivity {
         CustomAdapter5 c=new CustomAdapter5(this,object);
 
         recycle3.setAdapter(c);
-
+       submitfeedback.setVisibility(View.GONE);
         checkstatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +62,16 @@ public class TrackOrder extends AppCompatActivity {
             }
         });
 
+        submitfeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(TrackOrder.this,Submitfeedback.class);
+                Bundle args = new Bundle();
+                args.putSerializable("ARRAYLIST",(Serializable)object);
+                intent.putExtra("BUNDLE",args);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -85,12 +96,17 @@ public class TrackOrder extends AppCompatActivity {
                 {
                     Model m1=dataSnapshot.getValue(Model.class);
                     tapcount[0]+=1;
-                   // Toast.makeText(TrackOrder.this, Integer.toString(tapcount[0]), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TrackOrder.this, Integer.toString(tapcount[0])+"op"+keyult, Toast.LENGTH_SHORT).show();
                     if(m1.idg.equals(keyult))
                     {
                         Toast.makeText(TrackOrder.this, status, Toast.LENGTH_SHORT).show();
                         kp="Order Status-"+m1.orderstatus+"\n"+"Order No"+Integer.toString(tapcount[0]);
+                        Toast.makeText(TrackOrder.this, kp, Toast.LENGTH_SHORT).show();
                         textView9.setText(kp);
+                        if(tapcount[0]==1)
+                        {
+                            submitfeedback.setVisibility(View.VISIBLE);
+                        }
                         tapcount[0]=0;
                         break;
 

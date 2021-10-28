@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(MainActivity.this,MainActivity2.class));
+        startActivity(new Intent(MainActivity.this,CustomerDashboard.class));
      // startActivity(new Intent(MainActivity.this,TrackOrder.class));
       //  startActivity(new Intent(MainActivity.this,Menuitems.class));
 //        recycleview1=findViewById(R.id.recyclerView);

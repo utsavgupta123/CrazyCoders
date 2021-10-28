@@ -11,6 +11,7 @@ public  class items implements Serializable
     public String name;
     public int price;
     public String key="";
+    public Float rating=0.0F;
     public String imageurl;
     public String recipieurl;
     items()

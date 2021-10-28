@@ -1,18 +1,14 @@
 package com.example.catalog;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -33,7 +29,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
-        private final Button button;
+        private final Button button,ratingbtn;
         private final ImageView imageview;
 
         public ViewHolder(View view) {
@@ -41,6 +37,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             super(view);
             textView = (TextView) view.findViewById(R.id.textView);
             button=(Button)view.findViewById(R.id.button);
+            ratingbtn=(Button)view.findViewById(R.id.ratingbtn);
             imageview=(ImageView)view.findViewById(R.id.imageView2);
             // Define click listener for the ViewHolder's View
 
@@ -108,6 +105,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         viewHolder.getTextView().setText(localDataSet.get(position).name);
         viewHolder.button.setText(Integer.toString(localDataSet.get(position).price));
+        viewHolder.ratingbtn.setText("RATING-"+Float.toString(localDataSet.get(position).rating));
       //  Glide.with(context).load(localDataSet.get(position).imageurl).placeholder(android.R.drawable.progress_indeterminate_horizontal).error(android.R.drawable.stat_notify_error).into(viewHolder.imageview);
         Glide.with(context).load(localDataSet.get(position).imageurl).into(viewHolder.imageview);
        // viewHolder.imageview.getDrawable(R.drawable.ic_launcher_background);

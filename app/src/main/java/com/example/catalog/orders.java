@@ -58,14 +58,20 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
             @Override
             public void onClick(View v) {
 
-
+             //  intent=new Intent(orders.this,TrackOrder.class);
                 startPayment(cost);
-//                Intent intent=new Intent(orders.this,TrackOrder.class);
+              //  Intent intent=new Intent(orders.this,TrackOrder.class);
+              //  Intent intent=new Intent(orders.this,TrackOrder.class);
+//                Bundle args = new Bundle();
+//                args.putSerializable("ARRAYLIST",(Serializable)p1);
+//                intent.putExtra("BUNDLE",args);
+
+//                intent.putExtra("keykey",s1.idg);
 //                ArrayList<Model> vt=new ArrayList<>();
 //                vt.add(s1);
 //                Toast.makeText(orders.this, vt.get(0).customer, Toast.LENGTH_SHORT).show();
 //                intent.putExtra("key6",vt);
-              //  startActivity(intent);
+             //  startActivity(intent);
 
             }
         });
@@ -121,19 +127,18 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
     public void onPaymentSuccess(String s)
     {
 
-
         setvalues();
         Toast.makeText(this, "PAYMENT SUCESSS", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(orders.this,TrackOrder.class);
-
-        Bundle args = new Bundle();
-        args.putSerializable("ARRAYLIST",(Serializable)p1);
-        intent.putExtra("BUNDLE",args);
-        Toast.makeText(this, s1.idg, Toast.LENGTH_SHORT).show();
-        intent.putExtra("keykey",s1.idg);
-
-              //  intent.putExtra("key6",p1);
-         startActivity(intent);
+//        Intent intent=new Intent(orders.this,TrackOrder.class);
+//
+//        Bundle args = new Bundle();
+//        args.putSerializable("ARRAYLIST",(Serializable)p1);
+//        intent.putExtra("BUNDLE",args);
+//        Toast.makeText(this, s1.idg, Toast.LENGTH_SHORT).show();
+//        intent.putExtra("keykey",s1.idg);
+//
+//        //  intent.putExtra("key6",p1);
+//        startActivity(intent);
         //startActivity(new Intent(orders.this,TrackOrder.class));
 
     }
@@ -167,19 +172,33 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
         s1=new Model("UDAVITY",p1,"");
 
 
-        getToken();
-        Toast.makeText(this,"gettoken-"+s1.token, Toast.LENGTH_SHORT).show();
+     //   getToken();
+      //  Toast.makeText(this,"gettoken-"+s1.token, Toast.LENGTH_SHORT).show();
      //  s1.token=usertoken;
 
-//        s1.idg=root.push().getKey();
-//        root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull  Task<Void> task) {
-//                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//        });
+        s1.idg=root.push().getKey();
+
+        Toast.makeText(orders.this, s1.idg, Toast.LENGTH_SHORT).show();
+        root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull  Task<Void> task) {
+                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+
+        Intent intent=new Intent(orders.this,TrackOrder.class);
+       // Intent intent2=new Intent(orders.this,Submitfeedback.class);
+        intent.putExtra("keykey",s1.idg);
+        Bundle args = new Bundle();
+        args.putSerializable("ARRAYLIST",(Serializable)p1);
+        intent.putExtra("BUNDLE",args);
+       // intent2.putExtra("BUNDLE",args);
+        startActivity(intent);
+
 
 
 
@@ -212,7 +231,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
                         root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull  Task<Void> task) {
-                                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY"+s1.idg, Toast.LENGTH_SHORT).show();
 
 
                             }
