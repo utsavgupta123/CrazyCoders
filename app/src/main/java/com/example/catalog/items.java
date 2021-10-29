@@ -27,6 +27,7 @@ public  class items implements Serializable
         this.name=dish;
         this.price=val;
         this.imageurl=imageurlurl;
+       // this.reviews=new ArrayList<>();
 
         //this.dishimg=image;
     }

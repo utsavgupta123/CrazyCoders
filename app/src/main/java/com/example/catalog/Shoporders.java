@@ -36,6 +36,15 @@ public class Shoporders extends AppCompatActivity
     FirebaseAuth mAuth;
 
     //ArrayList<String>ord;
+
+    @Override
+    public void onBackPressed() {
+
+
+        super.onBackPressed();
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
@@ -93,8 +102,9 @@ public class Shoporders extends AppCompatActivity
           @Override
           public void onClick(View v)
           {
-              startActivity(new Intent(Shoporders.this,UpdateCatalog.class));
 
+
+              startActivity(new Intent(Shoporders.this,UpdateCatalog.class));
           }
       });
 

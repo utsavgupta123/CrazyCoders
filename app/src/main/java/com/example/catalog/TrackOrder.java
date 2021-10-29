@@ -2,10 +2,18 @@ package com.example.catalog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +35,10 @@ public class TrackOrder extends AppCompatActivity {
     Button checkstatus,submitfeedback;
     String keyult="";
     ArrayList<Model>pk=new ArrayList<>();
+
+
+
+    public static final int PRIMARY_FOREGROUND_NOTIF_SERVICE_ID = 1001;
 
      final int[] tapcount={0};
      String status="";
@@ -106,6 +118,38 @@ public class TrackOrder extends AppCompatActivity {
                         if(tapcount[0]==1)
                         {
                             submitfeedback.setVisibility(View.VISIBLE);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                                String id = "_channel_01";
+                                int importance = NotificationManager.IMPORTANCE_LOW;
+                                NotificationChannel mChannel = new NotificationChannel(id, "notification", importance);
+                                mChannel.enableVibration(true);
+                                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+                                mChannel.enableLights(true);
+
+                                Notification notification = new Notification.Builder(TrackOrder.this, id)
+                                        .setSmallIcon(R.drawable.iconnotify)
+                                        .setContentTitle("FOODIE")
+                                        .setContentText("YOUR FOOD IS READY!!! PICK IT UP")
+
+                                        .setLights(0xff0000ff, 300, 1000) // blue color
+                                        .setWhen(System.currentTimeMillis())
+
+                                        .build();
+                                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                if (mNotificationManager != null) {
+                                    mNotificationManager.createNotificationChannel(mChannel);
+                                    mNotificationManager.notify(PRIMARY_FOREGROUND_NOTIF_SERVICE_ID, notification);
+                                }
+
+
+
+                            }
+
+
+
+
                         }
                         tapcount[0]=0;
                         break;

@@ -94,12 +94,12 @@ public class Submitfeedback extends AppCompatActivity {
                             {
 
                                 items kp=new items();
+                                kp.reviews=new ArrayList<>();
                                 kp=t3;
 
                                 Float f=t3.rating;
                                 kp.rating=myMap.get(t3.name)+f;
                                 kp.count=t3.count+1;
-
 
                                 Toast.makeText(Submitfeedback.this, myMap2.get(t3.name)+customerId, Toast.LENGTH_SHORT).show();
                                 kp.reviews.add(Float.toString(kp.count)+"."+name+'\n'+myMap2.get(t3.name));
@@ -118,7 +118,7 @@ public class Submitfeedback extends AppCompatActivity {
 
 
 
-
+                    startActivity(new Intent(Submitfeedback.this,CustomerDashboard.class));
 
 
 

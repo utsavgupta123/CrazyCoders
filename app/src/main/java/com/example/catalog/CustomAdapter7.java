@@ -80,9 +80,11 @@ public class CustomAdapter7 extends RecyclerView.Adapter<CustomAdapter7.ViewHold
         // contents of the view with that element
 
 
-        viewHolder.getTextView().setText(localDataSet.get(position));
+     //   viewHolder.getTextView().setText(localDataSet.get(position));
 
-        // viewHolder.imageview.getDrawable(R.drawable.ic_launcher_background);
+        viewHolder.textView.setText(localDataSet.get(position));
+
+        //viewHolder.imageview.getDrawable(R.drawable.ic_launcher_background);
     }
 
 

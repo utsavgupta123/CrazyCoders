@@ -66,7 +66,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
                             ArrayList<String> v3=localDataSet.get(getAdapterPosition()).reviews;
                             //  ArrayList<String>v3=new ArrayList<>();
-                            Toast.makeText(context3, "op", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(context3, "op", Toast.LENGTH_SHORT).show();
                             intent.putStringArrayListExtra("key6",v3);
                             context3.startActivity(intent);
 
