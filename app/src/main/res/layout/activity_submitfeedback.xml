@@ -8,8 +8,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclefeedback"
-        android:layout_width="364dp"
-        android:layout_height="503dp"
+        android:layout_width="359dp"
+        android:layout_height="469dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/button12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"

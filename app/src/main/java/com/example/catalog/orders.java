@@ -13,9 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
@@ -37,7 +42,10 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
     public ArrayList<orderslist> p1=new ArrayList<orderslist>();
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private DatabaseReference root=db.getReference().child("Orders");
-
+    FirebaseAuth mAuth;
+    FirebaseFirestore fStore;
+    String customerId;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +61,21 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
         recycle2.setAdapter(c);
         String cost=getIntent().getStringExtra("key2");
         textview2.setText("TOTAL COST:"+cost);
+        mAuth= FirebaseAuth.getInstance();
+        fStore= FirebaseFirestore.getInstance();
+        customerId=mAuth.getCurrentUser().getUid();
+        DocumentReference documentReference=fStore.collection("customers").document(customerId);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(@NonNull  DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists())
+                {
+                    name=documentSnapshot.getString("fName");
+                }
+
+            }
+        });
+
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +124,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
         try {
             JSONObject options = new JSONObject();
 
-            options.put("name", "SMART RESTAURANT");
+            options.put("name", name);
             options.put("description", "PAY TO RESTAURANT");
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
            // options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
@@ -169,7 +192,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
 
         }
-        s1=new Model("UDAVITY",p1,"");
+        s1=new Model(name,p1,"");
 
 
      //   getToken();

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="412dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_margin="10dp"
+                android:background="#2096CC"
+                android:fontFamily="@font/roboto_mono_bold"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView12"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="64dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="#13A6E8"-->
+<!--                android:fontFamily="@font/roboto_mono_bold"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold|italic" />-->
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
