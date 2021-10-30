@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class Shoporders extends AppCompatActivity
     ArrayList<Model> ord;
     HashSet<String>keymap;
     Button button4,updatebtn,button10;
+    ImageView sendimg;
     FirebaseAuth mAuth;
 
     //ArrayList<String>ord;
@@ -51,6 +53,7 @@ public class Shoporders extends AppCompatActivity
         Toast.makeText(this, "WELCOME", Toast.LENGTH_SHORT).show();
          setContentView(R.layout.activity_shoporders);
         recycleview2=findViewById(R.id.recycleview2);
+        sendimg=findViewById(R.id.sendimg);
         mAuth=FirebaseAuth.getInstance();
        // recycleview2.hasFixedSize();
        // recycleview2.setItemViewCacheSize(0);
@@ -116,7 +119,12 @@ public class Shoporders extends AppCompatActivity
          }
      });
 
-
+    sendimg.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(Shoporders.this,NotifyALL.class));
+        }
+    });
 
 
 

@@ -43,6 +43,7 @@ public class CustomerDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_customer_dashboard);
 
         logout=findViewById(R.id.logout);
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
 
         mAuth=FirebaseAuth.getInstance();
         storeToken();
