@@ -170,7 +170,7 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.ViewHold
 
                  dataref.setValue(kk);
                  String currtoken=localDataSet.get(position).token;
-                 sendSMS();
+              //   sendSMS();
 
 //                root.child(key).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
 //                   @Override

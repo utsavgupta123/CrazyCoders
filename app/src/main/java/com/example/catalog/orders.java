@@ -241,7 +241,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
         s1.idg=root.push().getKey();
 
-        Toast.makeText(orders.this, s1.idg, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(orders.this, s1.idg, Toast.LENGTH_SHORT).show();
         root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull  Task<Void> task) {
@@ -294,13 +294,13 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
                         root.child(s1.idg).setValue(s1).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull  Task<Void> task) {
-                                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY"+s1.idg, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(orders.this, "ORDER PLACED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
 
 
                             }
                         });
 
-                        Toast.makeText(orders.this, "s1.token"+s1.token, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(orders.this, "s1.token"+s1.token, Toast.LENGTH_SHORT).show();
 
                     }
                 });

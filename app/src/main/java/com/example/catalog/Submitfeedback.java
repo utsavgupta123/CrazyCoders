@@ -104,7 +104,7 @@ public class Submitfeedback extends AppCompatActivity {
                                 kp.rating=myMap.get(t3.name)+f;
                                 kp.count=t3.count+1;
 
-                                Toast.makeText(Submitfeedback.this, myMap2.get(t3.name)+customerId, Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(Submitfeedback.this, myMap2.get(t3.name)+customerId, Toast.LENGTH_SHORT).show();
                                 kp.reviews.add(Float.toString(kp.count)+"."+name+'\n'+myMap2.get(t3.name));
                                 root1.child(t3.key).setValue(kp);
                             }

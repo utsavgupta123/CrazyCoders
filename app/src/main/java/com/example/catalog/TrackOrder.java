@@ -108,12 +108,12 @@ public class TrackOrder extends AppCompatActivity {
                 {
                     Model m1=dataSnapshot.getValue(Model.class);
                     tapcount[0]+=1;
-                    Toast.makeText(TrackOrder.this, Integer.toString(tapcount[0])+"op"+keyult, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(TrackOrder.this, Integer.toString(tapcount[0])+"op"+keyult, Toast.LENGTH_SHORT).show();
                     if(m1.idg.equals(keyult))
                     {
-                        Toast.makeText(TrackOrder.this, status, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(TrackOrder.this, status, Toast.LENGTH_SHORT).show();
                         kp="Order Status-"+m1.orderstatus+"\n"+"Order No"+Integer.toString(tapcount[0]);
-                        Toast.makeText(TrackOrder.this, kp, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(TrackOrder.this, kp, Toast.LENGTH_SHORT).show();
                         textView9.setText(kp);
                         if(tapcount[0]==1)
                         {

@@ -56,7 +56,7 @@ public class CustomerDashboard extends AppCompatActivity {
         FirebaseMessaging.getInstance().subscribeToTopic("all");
 
         mAuth=FirebaseAuth.getInstance();
-        storeToken();
+        //storeToken();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
