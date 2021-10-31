@@ -4,25 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mycolor"
+    android:background="@drawable/background"
     tools:context=".LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="393dp"
-        android:layout_height="256dp"
+        android:layout_width="318dp"
+        android:layout_height="239dp"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="84dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="367dp"
-            android:layout_height="256dp"
+            android:layout_width="301dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:orientation="vertical">
 
@@ -30,66 +29,62 @@
                 android:id="@+id/sEmailBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:height="48dp"
-                android:background="@drawable/textbox"
                 android:drawableLeft="@android:drawable/ic_dialog_email"
-                android:drawablePadding="10dp"
+                android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="E-mail"
                 android:inputType="textEmailAddress"
-                android:padding="10dp" />
+                android:textSize="10sp" />
 
             <EditText
                 android:id="@+id/sPasswordBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/textbox"
+                android:layout_marginTop="2dp"
                 android:drawableLeft="@android:drawable/ic_lock_lock"
-                android:drawablePadding="10dp"
+                android:drawablePadding="2dp"
                 android:ems="10"
-                android:hint="Set Password"
+                android:hint="Password"
                 android:inputType="textPassword"
-                android:padding="10dp" />
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/sLoginBtn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_style"
+                android:text="LOGIN"
+                app:backgroundTint="#3F51B5" />
 
             <Button
                 android:id="@+id/sCreateBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/button_style2"
                 android:text="CREATE AN ACCOUNT"
                 app:backgroundTint="#F44336" />
-
-            <Button
-                android:id="@+id/sLoginBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_style"
-                android:text="ALREADY HAVE AN ACCOUNT"
-                app:backgroundTint="#3F51B5" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="410dp"
-        android:layout_height="297dp"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="389dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:orientation="vertical">
 
@@ -97,52 +92,55 @@
                 android:id="@+id/cName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/textbox"
+                android:drawableLeft="@android:drawable/ic_dialog_email"
+                android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="Full Name"
-                android:inputType="textPersonName"
-                android:padding="10dp" />
+                android:inputType="textEmailAddress"
+                android:textSize="10sp" />
 
             <EditText
                 android:id="@+id/cEmailBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:drawableLeft="@android:drawable/ic_dialog_email"
-                android:drawablePadding="10dp"
+                android:drawablePadding="2dp"
                 android:ems="10"
                 android:hint="E-mail"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textSize="10sp" />
 
             <EditText
                 android:id="@+id/cPasswordBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="2dp"
                 android:drawableLeft="@android:drawable/ic_lock_lock"
-                android:drawablePadding="10dp"
+                android:drawablePadding="2dp"
                 android:ems="10"
-                android:hint="Set Password"
-                android:inputType="textPassword" />
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/cLoginBtn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/button_style"
+                android:text="LOGIN"
+                app:backgroundTint="#3F51B5" />
 
             <Button
                 android:id="@+id/cCreateBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/button_style2"
                 android:text="CREATE AN ACCOUNT"
                 app:backgroundTint="#F44336" />
-
-            <Button
-                android:id="@+id/cLoginBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_style"
-                android:text="ALREADY HAVE AN ACCOUNT"
-                app:backgroundTint="#3F51B5" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -152,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="For Customer"
-        android:textColor="#000"
+        android:textColor="#ffff"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -165,10 +163,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="For Shopkeeper"
-        android:textColor="#000"
+        android:textColor="#ffff"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

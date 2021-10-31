@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.catalog">
+    package="com.example.catalog" >
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,30 +9,33 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Catalog">
-        <activity android:name=".NotifyALL"></activity>
+        android:theme="@style/Theme.Catalog" >
+        <activity
+            android:name=".select"
+            android:exported="false" />
+        <activity android:name=".NotifyALL" />
         <activity android:name=".Showreviews" />
         <activity android:name=".Submitfeedback" />
         <activity android:name=".TrackOrder" />
-        <activity android:name=".CustomerDashboard"
-         />
+        <activity android:name=".CustomerDashboard" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity2" />
-        <activity android:name=".NowUpdate"
-            android:launchMode = "singleTop"/>
-        <activity android:name=".UpdateCatalog"
-            android:launchMode = "singleTop"/>
+        <activity
+            android:name=".NowUpdate"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".UpdateCatalog"
+            android:launchMode="singleTop" />
         <activity android:name=".Menuitems" />
         <activity android:name=".Shoporders" />
         <activity android:name=".orders" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +50,7 @@
         <service
             android:name=".FirebaseMessagingService"
             android:permission="TODO"
-            tools:ignore="ExportedService">
+            tools:ignore="ExportedService" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
