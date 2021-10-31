@@ -135,4 +135,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount() {
         return localDataSet.size();
     }
+
+    public  void filteredlist(ArrayList<items> filterlist)
+    {
+        localDataSet=filterlist;
+        notifyDataSetChanged();
+    }
+    public  void settozero()
+    {
+        cost=0;
+        mtextview.setText("0");
+        orders.clear();
+        notifyDataSetChanged();
+    }
 }

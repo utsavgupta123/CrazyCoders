@@ -55,7 +55,12 @@ public class NowUpdate extends AppCompatActivity {
                     @Override
                     public void onSuccess(@NonNull Void unused) {
                         Toast.makeText(NowUpdate.this, "CATALOG CHANGED", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(NowUpdate.this,UpdateCatalog.class));
+                        Intent newIntent=new Intent(NowUpdate.this,Shoporders.class);
+
+                        newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(newIntent);
+                       // finish();
                     }
                 });
 

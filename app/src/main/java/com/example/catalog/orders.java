@@ -5,8 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -152,6 +158,40 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
 
         setvalues();
         Toast.makeText(this, "PAYMENT SUCESSS", Toast.LENGTH_SHORT).show();
+        String currkey=FirebaseAuth.getInstance().getCurrentUser().getUid();
+       // String token=db.getReference("Tokens").child(currkey)
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {100, 300, 300, 300};
+        v.vibrate(pattern, -1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            String id = "_channel_01";
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            NotificationChannel mChannel = new NotificationChannel(id, "notification", importance);
+            mChannel.enableVibration(true);
+            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+            mChannel.enableLights(true);
+
+            Notification notification = new Notification.Builder(orders.this, id)
+                    .setSmallIcon(R.drawable.iconnotify)
+                    .setContentTitle("PAYMENT SUCCESSFUL")
+                    .setContentText("Your Order has been successfully placed !!!!")
+
+
+                    .setLights(0xff0000ff, 300, 1000) // blue color
+                    .setWhen(System.currentTimeMillis())
+
+                    .build();
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (mNotificationManager != null) {
+                mNotificationManager.createNotificationChannel(mChannel);
+                mNotificationManager.notify(1001, notification);
+            }
+
+
+
+        }
 //        Intent intent=new Intent(orders.this,TrackOrder.class);
 //
 //        Bundle args = new Bundle();
@@ -221,7 +261,7 @@ public class orders extends AppCompatActivity implements PaymentResultListener {
         intent.putExtra("BUNDLE",args);
        // intent2.putExtra("BUNDLE",args);
         startActivity(intent);
-
+        finish();
 
 
 

@@ -51,6 +51,7 @@ public class CustomAdapter4 extends RecyclerView.Adapter<CustomAdapter4.ViewHold
                     v3.add(t);
                     intent.putExtra("key3",v3);
                     context1.startActivity(intent);
+
                 }
             });
 

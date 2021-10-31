@@ -34,6 +34,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+
 public class Menuitems extends AppCompatActivity {
 
     EditText mprice,mdishname,youtube;
@@ -143,6 +145,8 @@ public class Menuitems extends AppCompatActivity {
 
 
                                     items d=new items(item1,cost,kp);
+                                    d.reviews=new ArrayList<>();
+                                    d.reviews.add("");
                                     String ky=root.push().getKey();
                                     d.key=ky;
                                     d.recipieurl=youtube.getText().toString();
@@ -150,7 +154,12 @@ public class Menuitems extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(Menuitems.this, "CATALOG UPDATED", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(Menuitems.this, Shoporders.class));
+                                            Intent newIntent=new Intent(Menuitems.this, Shoporders.class);
+
+                                            newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(newIntent);
+
 
                                         }
                                     });

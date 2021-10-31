@@ -94,9 +94,12 @@ public class Submitfeedback extends AppCompatActivity {
                             {
 
                                 items kp=new items();
-                                kp.reviews=new ArrayList<>();
-                                kp=t3;
 
+                                kp=t3;
+                                if(t3.reviews.size()==0)
+                                {
+                                    kp.reviews=new ArrayList<>();
+                                }
                                 Float f=t3.rating;
                                 kp.rating=myMap.get(t3.name)+f;
                                 kp.count=t3.count+1;
@@ -117,8 +120,12 @@ public class Submitfeedback extends AppCompatActivity {
                 });
 
 
+                Intent newIntent=new Intent(Submitfeedback.this,CustomerDashboard.class);
 
-                    startActivity(new Intent(Submitfeedback.this,CustomerDashboard.class));
+                newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(newIntent);
+
 
 
 

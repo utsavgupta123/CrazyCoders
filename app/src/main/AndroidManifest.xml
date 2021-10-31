@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,12 +20,15 @@
         <activity android:name=".Showreviews" />
         <activity android:name=".Submitfeedback" />
         <activity android:name=".TrackOrder" />
-        <activity android:name=".CustomerDashboard" />
+        <activity android:name=".CustomerDashboard"
+         />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity2" />
-        <activity android:name=".NowUpdate" />
-        <activity android:name=".UpdateCatalog" />
+        <activity android:name=".NowUpdate"
+            android:launchMode = "singleTop"/>
+        <activity android:name=".UpdateCatalog"
+            android:launchMode = "singleTop"/>
         <activity android:name=".Menuitems" />
         <activity android:name=".Shoporders" />
         <activity android:name=".orders" />

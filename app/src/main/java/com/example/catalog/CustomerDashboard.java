@@ -2,13 +2,18 @@ package com.example.catalog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,20 +33,25 @@ import java.util.Map;
 
 public class CustomerDashboard extends AppCompatActivity {
 
-    Button logout;
+    Button logout,clearall;
     FirebaseAuth mAuth;
     RecyclerView recycleview1;
     public TextView textview5,viewcart;
     public  int cost;
+   EditText searchbar;
 
     ArrayList<items> ordered=new ArrayList<items>();
+    ArrayList<items>arr=new ArrayList<>();
+    CustomAdapter c;
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private DatabaseReference root1=db.getReference().child("Menu");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_dashboard);
-
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         logout=findViewById(R.id.logout);
         FirebaseMessaging.getInstance().subscribeToTopic("all");
 
@@ -59,8 +69,10 @@ public class CustomerDashboard extends AppCompatActivity {
         textview5=findViewById(R.id.textView5);
         recycleview1.setLayoutManager(new LinearLayoutManager(this));
         viewcart=findViewById(R.id.viewcart);
-        ArrayList<items>arr=new ArrayList<>();
-        CustomAdapter c=new CustomAdapter(this,arr,textview5,ordered);
+        searchbar=findViewById(R.id.searchbar);
+        clearall=findViewById(R.id.clearbtn);
+
+         c=new CustomAdapter(this,arr,textview5,ordered);
         recycleview1.setAdapter(c);
 
         textview5.setText(Integer.toString(cost));
@@ -77,6 +89,18 @@ public class CustomerDashboard extends AppCompatActivity {
 
             }
         });
+
+         clearall.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v)
+             {
+                 c.settozero();
+
+             }
+         });
+
+
+
 
 
         root1.addValueEventListener(new ValueEventListener() {
@@ -97,10 +121,41 @@ public class CustomerDashboard extends AppCompatActivity {
             }
         });
 
+       searchbar.addTextChangedListener(new TextWatcher() {
+           @Override
+           public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+           }
+
+           @Override
+           public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+           }
+
+           @Override
+           public void afterTextChanged(Editable s) {
+
+               filter(s.toString());
+
+           }
+       });
 
     }
 
+
+    private void filter(String text)
+    {
+        ArrayList<items> filterlist=new ArrayList<>();
+        for(items t1:arr)
+        {
+            if(t1.name.toLowerCase().contains(text.toLowerCase()))
+            {
+                filterlist.add(t1);
+            }
+        }
+
+        c.filteredlist(filterlist);
+    }
 
     public void storeToken()
     {
